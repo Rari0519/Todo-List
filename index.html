@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <script src="/js/script.js" defer></script>
-    <title>TodoList</title>
 </head>
 <body>
-    <div>
-        <input type="text" placeholder="Digite sua tafera...">
-        <select>
-            <option value="baixa">Baixo</option>
-            <option value="media">Média</option>
-            <option value="alto">Alto</option>
-        </select>
-        <button>Adicionar</button>
+    <div class="container">
+        <header>
+            <input type="text" id="task-input" placeholder="Digite a tarefa...">
+            <button class="adicionar">Adicionar</button>
+        </header>
+        <ul class="lista-tarefas">
+            <li>
+                <span>Tarefa 1...</span>
+                <div class="tarefas">
+                    <button class="concluido">✓</button>
+                    <button class="editar"><i class='bx bxs-edit'></i></button>
+                    <button class="deletar">✗</button>
+                </div>
+            </li>
+        </ul>
     </div>
-    <ul>
-        <i class='bx bxs-checkbox-checked'></i>
-        <li>tarefa 1</li>
-        <i class='bx bxs-trash'></i>
-    </ul>
 </body>
 </html>
