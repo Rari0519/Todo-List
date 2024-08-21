@@ -6,23 +6,18 @@
     <title>Lista de Tarefas</title>
     <link rel="stylesheet" href="./css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
 </head>
 <body>
     <div class="container">
         <header>
-            <input type="text" id="task-input" placeholder="Digite a tarefa...">
-            <button class="adicionar">Adicionar</button>
+            <input type="text" id="input" placeholder="Digite a tarefa...">
+            <button class="add" onclick="adicionaTarefa" >Add</button>
         </header>
         <ul class="lista-tarefas">
-            <li>
-                <span>Tarefa 1...</span>
-                <div class="tarefas">
-                    <button class="concluido">✓</button>
-                    <button class="editar"><i class='bx bxs-edit'></i></button>
-                    <button class="deletar">✗</button>
-                </div>
-            </li>
+            <li></li>
         </ul>
     </div>
+    <script src="./js/script.js"></script>
 </body>
 </html>
