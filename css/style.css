@@ -62,6 +62,12 @@ header button {
     padding: 5px 10px;
     cursor: pointer;
     height: 25px;
+    transition: background-color 1s, color 1s; /* Transição suave para cor de fundo e texto */
+}
+.add:hover,
+.add:focus {
+    background-color: purple; /* Cor de fundo ao passar o mouse ou ao focar */
+    color: greenyellow; /* Cor do texto ao passar o mouse ou ao focar */
 }
 
 .lista-tarefas {
@@ -69,7 +75,7 @@ header button {
     background-color: blueviolet;
     padding: 10px;
     border-radius: 7px;
-    overflow-y: auto; /*rolagem vertical automática*/
+    overflow-y: auto; /*rolagem vertical(y) automática*/
 }
 
 .lista-tarefas li {
