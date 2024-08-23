@@ -27,7 +27,7 @@ html {
 
 .container {
     height: 250px;
-    width: 320px;
+    width: 400px;
     background-color:var(--cor1);
     border-radius: 7px;
     padding: 15px;
@@ -64,6 +64,19 @@ header button {
     height: 25px;
     transition: 0.5s;
 }
+
+/* murilo : customizaçao para o botao de select, filtro! */
+header select {
+    background-color: greenyellow;
+    color: purple;
+    border-radius: 7px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    height: 25px;
+    transition: 0.5s;
+}
+
 .add:hover{
     background-color: purple; 
     color: greenyellow; 
@@ -88,12 +101,16 @@ header button {
     color: white;
 }
 
-.tarefas{
+.tarefa {
     display: flex;
     gap: 5px;
 }
 
-.tarefas button {
+.tarefa > .botoes {
+    display: flex;
+}
+
+.tarefa > .botoes > button {
     width: 30px;
     height: 30px;
     border-radius: 7px;
@@ -105,6 +122,10 @@ header button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tarefa > form > input {
+    width: 120px;
 }
 
 .tarefas .editar i {

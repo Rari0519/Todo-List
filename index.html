@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  
 </head>
 <body>
     <div class="container">
         <header>
             <input type="text" id="input" placeholder="Digite a tarefa...">
+            <!-- murilo: adicionei a caixa de select -->
+            <select id = "select">
+                <option>Alta</option>
+                <option>Baixa</option>
+                <option> Media </option>
+            </select>
             <button class="add" onclick="adicionaTarefa" >Add</button>
         </header>
         <ul class="lista-tarefas">
