@@ -62,12 +62,11 @@ header button {
     padding: 5px 10px;
     cursor: pointer;
     height: 25px;
-    transition: background-color 1s, color 1s; /* Transição suave para cor de fundo e texto */
+    transition: 0.5s;
 }
-.add:hover,
-.add:focus {
-    background-color: purple; /* Cor de fundo ao passar o mouse ou ao focar */
-    color: greenyellow; /* Cor do texto ao passar o mouse ou ao focar */
+.add:hover{
+    background-color: purple; 
+    color: greenyellow; 
 }
 
 .lista-tarefas {
