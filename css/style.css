@@ -131,3 +131,7 @@ header select {
 .tarefas .editar i {
     font-size: 18px;
 }
+
+.Concluido {
+    text-decoration: line-through;
+}

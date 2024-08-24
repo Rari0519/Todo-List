@@ -139,12 +139,40 @@ function adicionar_eventos_botoes() {
         substituir_nome_por_input()
     }
 
+    function evento_remover(array, indice) {
+        array.splice(indice , 1)
+        construir_div(array)
+    }
+
+    function adicionar_concluir(elemento, array) {
+        elemento.classList.toggle('Concluido')
+        array.Concluido = true
+    }
+
+    function desfazer_concluir(elemento, array) {
+        elemento.classList.toggle('Concluido')
+        array.Concluido = false
+    }
+
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
             const index = encontrar_indice(button.id) // quando eu pego o index, consigo encontrar a tarefa dentro do array e repassar para qualquer funcao
             if (button.id.includes('editar')) {
                 let nome_task = pegar_nome_task(tarefa[index])
                 adicionar_editar(nome_task, tarefas[index])
+            }
+            if (button.id.includes('excluir')) {
+                evento_remover(tarefas, index)
+            }
+
+            if (button.id.includes('concluir')) {
+                const nome_task = pegar_nome_task(tarefa[index])
+                if (tarefas[index].Concluido == false) {
+                    adicionar_concluir(nome_task, tarefas[index])
+                }
+                else {
+                    desfazer_concluir(nome_task, tarefas[index])
+                }
             }
 
         })
