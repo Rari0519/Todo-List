@@ -1,23 +1,19 @@
-const input = document.querySelector('#input');
-const btnAdd = document.querySelector('.add');
-const ul = document.querySelector('.lista-tarefas');
+const input = document.querySelector('#tarefa-input');
+const btnAdd = document.querySelector('#btn-add');
+listaTarefas = []
 
-function adicionaTarefa() {
-    const tarefa = input.value.trim(); //remove espaço em branco
-    
-    if (tarefa !== "") { 
-        const li = document.createElement('li'); //li dinamico
-        li.innerHTML = `
-            <span>${tarefa}</span>
-            <div class="tarefas">
-                <button class="concluido">✓</button>
-                <button class="editar"><i class='bx bxs-edit'></i></button>
-                <button class="deletar">✗</button>
-            </div>
-        `;
-        ul.appendChild(li); 
-        input.value = ""; 
-    }
+//Função para carregar tarefas do localStorage
+function adicionaNoStorage(){
+
 }
-
-btnAdd.addEventListener("click", adicionaTarefa);
+//função adicionar tarefa
+function adicionaTarefa(event){
+    event.preventDefault(); // Impede o comportamento padrão do navegador.
+    let valorInput = input.value.trim();
+    if(valorInput !== ""){
+        listaTarefas.push(valorInput);
+        input.value = ''
+    }
+    console.log(listaTarefas)
+};
+btnAdd.addEventListener("click",adicionaTarefa);
