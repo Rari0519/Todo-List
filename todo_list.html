@@ -13,18 +13,18 @@
 </head>
 <body>
     <div class="container">
-        <head>
+        <head> <!-- Cabeçalho -->
             <h1>Todo List</h1>
         </head>
+        <!-- -------------------------------------------------------------------- -->
         <!-- Formulário para adicionar tarefas -->
         <form id="todo-form">
-            
             <p>Adicione sua tarefa</p>
             <div class="todo-form-field">
                 <!-- Entrada das tarefas -->
-                <input type="text" id="todo-form-input" placeholder="O que você vai fazer?">
+                <input type="text" id="form-input" placeholder="O que você vai fazer?">
                 <!-- Lista de prioridade -->
-                <select id="todo-form-priority">
+                <select id="form-priority">
                     <option value="low">Baixa</option>
                     <option value="avarege">Média</option>
                     <option value="high">Alta</option>
@@ -34,7 +34,7 @@
                 </button>
             </div>
         </form>
-
+        <!-- -------------------------------------------------------------------- -->
         <!-- Formulário para editar tarefas -->
         <form id="todo-edit">
             <p>Edite sua tarefa</p>
@@ -44,7 +44,50 @@
                     <i class="bi bi-check-all"></i>
                 </button>
             </div>
+            <button id="todo-edit-cancel">Cancelar</button>
         </form>
+        <!-- -------------------------------------------------------------------- -->
+        <!-- Barra de ferramentas -->
+         <div id="todo-toolbar">
+            <!-- Campo de pesquisa -->
+            <div id="search">
+                <p>Pesquisar:</p>
+                <form>
+                    <input type="text" id="search-input" placeholder="Buscar">
+                    <button id="clear-field">
+                        <i class="bi bi-backspace-fill"></i>
+                    </button>
+                </form>
+            </div>
+            <div id="filter">
+                <p>Filtrar:</p>
+                <select id="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="done">Feitos</option>
+                    <option value="todo">A fazer</option>
+                </select>
+            </div>
+        </div>
+        <!-- -------------------------------------------------------------------- -->
+         <!-- Lista de tarefas -->
+        <div id="todo-list">
+            <div class="list">
+                <h3>Minha tarefa</h3>
+
+                <button class="completed-todo">
+                    <i class="bi bi-check-lg"></i>
+                </button>
+                <button class="edit-todo">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button class="delete-todo">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+
+    
 
 
     </div> <!-- End div container -->
