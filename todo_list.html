@@ -13,9 +13,9 @@
 </head>
 <body>
     <div class="container">
-        <head> <!-- Cabeçalho -->
+        <header> <!-- Cabeçalho -->
             <h1>Todo List</h1>
-        </head>
+        </header>
         <!-- -------------------------------------------------------------------- -->
         <!-- Formulário para adicionar tarefas -->
         <form id="todo-form">
@@ -36,7 +36,7 @@
         </form>
         <!-- -------------------------------------------------------------------- -->
         <!-- Formulário para editar tarefas -->
-        <form id="todo-edit">
+        <form id="todo-edit" class="">
             <p>Edite sua tarefa</p>
             <div class="todo-form-field">
                 <input type="text" id="todo-edit-input">
@@ -73,7 +73,22 @@
         <div id="todo-list">
             <div class="list">
                 <h3>Minha tarefa</h3>
-
+                <div class="list-priority">
+                </div>
+                <button class="completed-todo">
+                    <i class="bi bi-check-lg"></i>
+                </button>
+                <button class="edit-todo">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button class="delete-todo">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="list">
+                <h3>Tarefa2</h3>
+                <div class="list-priority">
+                </div>
                 <button class="completed-todo">
                     <i class="bi bi-check-lg"></i>
                 </button>

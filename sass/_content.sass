@@ -1,10 +1,57 @@
 @import './_variables'
 
+// estilo para a div pai
 .container
     background-color: $background-color
     width: 500px
-    height: auto
     margin: 100px auto 0 // centralizando div pai
     padding: 2rem
-    border-radius: 10px
-        
+    border-radius: 20px
+    box-shadow: 9px 10px 50px black
+
+// todo form
+#todo-form, #todo-edit, #todo-toolbar
+    padding: 1rem
+    border-bottom: 1px solid $border-color
+
+.todo-form-field
+    display: flex
+    justify-content: space-between
+
+// botão cancelar edição
+#todo-edit-cancel
+    margin-top: .5rem
+
+// toolbar - barra de ferramentas
+#todo-toolbar
+    display: flex
+    justify-content: space-between
+
+#search 
+    border-right: 2px solid $border-color
+    width: 80%
+
+#search-input
+    width: 72%
+
+#filter
+    margin-left: 2rem 
+    display: flex
+    flex-direction: column
+
+// lista de tarefas
+.list
+    display: flex
+    justify-content: space-around
+    align-items: center  
+    padding: 1rem
+    border-bottom: 1px solid $border-color 
+    transition: .3s
+
+.list-priority
+    border: 1px solid $font-color
+    width: 4rem
+    height: 1rem
+    margin: .3rem
+    color: white
+
