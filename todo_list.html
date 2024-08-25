@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="sass/style.css">
-    <script src="js/script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    /> <!-- Icones -->
+    <link rel="stylesheet" href="sass/style.css"> <!-- CSS -->
+    <script src="js/script.js" defer></script> <!-- JS -->
     <title>Todo List</title>
 </head>
 <body>
@@ -12,19 +16,37 @@
         <head>
             <h1>Todo List</h1>
         </head>
+        <!-- Formulário para adicionar tarefas -->
         <form id="todo-form">
+            
             <p>Adicione sua tarefa</p>
-            <div class="todo-input">
-                <input type="text" id="todo-inpuut-" placeholder="O que você vai fazer?">
-            </div>
-            <div class="todo-priority">
-                <select name="" id="todo-priority-select">
+            <div class="todo-form-field">
+                <!-- Entrada das tarefas -->
+                <input type="text" id="todo-form-input" placeholder="O que você vai fazer?">
+                <!-- Lista de prioridade -->
+                <select id="todo-form-priority">
                     <option value="low">Baixa</option>
                     <option value="avarege">Média</option>
                     <option value="high">Alta</option>
                 </select>
+                <button type="submit">
+                    <i class="bi bi-plus"></i>  
+                </button>
             </div>
         </form>
-    </div>
+
+        <!-- Formulário para editar tarefas -->
+        <form id="todo-edit">
+            <p>Edite sua tarefa</p>
+            <div class="todo-form-field">
+                <input type="text" id="todo-edit-input">
+                <button type="submit">
+                    <i class="bi bi-check-all"></i>
+                </button>
+            </div>
+        </form>
+
+
+    </div> <!-- End div container -->
 </body>
 </html>
