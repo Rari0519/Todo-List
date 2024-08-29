@@ -28,3 +28,6 @@ body, html {
 .tarefas {
     margin-top: 20px;
 }
+.feito{
+    text-decoration: line-through;
+}
