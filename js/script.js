@@ -55,6 +55,7 @@ function mostrarNaTela(listaTarefas) {
     tarefas.innerHTML = li;
 }
 
+// utiliza o nome da classe e o atributo concluido para gerar um novo array com as tarefas filtradas
 function filtrarTarefas(btn, tarefas) {
 
     const tarefas_filtradas = []
