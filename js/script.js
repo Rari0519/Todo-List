@@ -7,7 +7,7 @@ const btn_filtros = document.querySelectorAll('.filtro')
 
 let listaTarefas = [];
 
-function adicionaTarefa() {
+function adicionaTarefa(l) {
     const tarefa = input.value.trim();
     if (tarefa !== "") {
         listaTarefas.push({
@@ -33,23 +33,31 @@ function editar(posicao) {
 }
 
 function concluir(posicao) {
-    
+    listaTarefas[posicao].concluida = !listaTarefas[posicao].concluida;
+
+    const label = document.querySelector(`#label-${posicao}`);
+
+    if (listaTarefas[posicao].concluida == true) {
+        label.style.textDecoration = 'line-through';
+    } else{
+        label.style.textDecoration = 'none';
+    }
 }
 
 function mostrarNaTela(listaTarefas) {
     let li = "";
     listaTarefas.forEach((itemTarefa, posicao) => {
-        li += `
-       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="form-check">
-            <label class="form-check-label" id="label-${posicao} for="input">${itemTarefa.tarefa}</label>
-        </div>
-        <div class="ms-auto p-1">
-            <button type="button" class="btn btn-success btn-sm" onclick="concluir(${posicao})"><i class='bx bx-check'></i></button>
-            <button type="button" class="btn btn-primary btn-sm me-2" onclick="editar(${posicao})"><i class='bx bxs-pencil'></i></button>
-            <button type="button" class="btn btn-danger btn-sm" onclick="deletar(${posicao})"><i class='bx bx-x'></i></button>
-        </div>
-        </li>`;
+        li = li + `
+        <li class="list-group-item d-flex justify-content-between align-items-center ${itemTarefa.concluida ? 'completed' : ''}">
+         <div class="form-check">
+             <input class="form-check-input" type="checkbox" ${itemTarefa.concluida ? 'checked' : ''} onchange="concluir(${posicao})">
+             <label class="form-check-label" id="label-${posicao}" for="input">${itemTarefa.tarefa}</label>
+         </div>
+         <div class="ms-auto p-1">
+             <button type="button" class="btn btn-primary btn-sm me-2" onclick="editar(${posicao})"><i class='bx bxs-pencil'></i></button>
+             <button type="button" class="btn btn-danger btn-sm" onclick="deletar(${posicao})"><i class='bx bx-x'></i></button>
+         </div>
+         </li>`;
     });
 
     tarefas.innerHTML = li;
@@ -76,7 +84,6 @@ function filtrarTarefas(btn, tarefas) {
     mostrarNaTela(tarefas_filtradas)
 
 }
-
 
 btnAdd.addEventListener("click", adicionaTarefa);
 btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
