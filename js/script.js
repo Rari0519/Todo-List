@@ -7,7 +7,7 @@ const btn_filtros = document.querySelectorAll('.filtro')
 
 let listaTarefas = [];
 
-function adicionaTarefa(l) {
+function adicionaTarefa() {
     const tarefa = input.value.trim();
     if (tarefa !== "") {
         listaTarefas.push({
