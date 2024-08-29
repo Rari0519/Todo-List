@@ -48,9 +48,9 @@ function mostrarNaTela(listaTarefas) {
     let li = "";
     listaTarefas.forEach((itemTarefa, posicao) => {
         li = li + `
-        <li class="list-group-item d-flex justify-content-between align-items-center ${itemTarefa.concluida ? 'completed' : ''}">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
          <div class="form-check">
-             <input class="form-check-input" type="checkbox" ${itemTarefa.concluida ? 'checked' : ''} onchange="concluir(${posicao})">
+             <input class="form-check-input" type="checkbox" onchange="concluir(${posicao})">
              <label class="form-check-label" id="label-${posicao}" for="input">${itemTarefa.tarefa}</label>
          </div>
          <div class="ms-auto p-1">
