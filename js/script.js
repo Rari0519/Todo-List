@@ -1,9 +1,8 @@
 const input = document.querySelector('#tarefa-input');
 const btnAdd = document.querySelector('#btn-add');
 const tarefas = document.querySelector('.tarefas');
-const btnTodos = document.querySelector('.btn-todas');
-const btnConcluidas = document.querySelector('.btn-concluidas');
-const btnPendentes = document.querySelector('.btn-pendentes')
+const btn_filtros = document.querySelectorAll('.filtro')
+
 let listaTarefas = [];
 
 function adicionaTarefa() {
@@ -13,7 +12,7 @@ function adicionaTarefa() {
             tarefa: tarefa,
             concluida: false
         });
-        mostrarNaTela();
+        mostrarNaTela(listaTarefas);
     }
     input.value = '';
 }
@@ -34,7 +33,7 @@ function editar(posicao) {
 function concluir(posicao) {
 }
 
-function mostrarNaTela() {
+function mostrarNaTela(listaTarefas) {
     let li = "";
 
     listaTarefas.forEach((itemTarefa, posicao) => {
@@ -56,5 +55,28 @@ function mostrarNaTela() {
     tarefas.innerHTML = li;
 }
 
+function filtrarTarefas(btn, tarefas) {
+
+    const tarefas_filtradas = []
+
+   for (obj in tarefas) {
+        if (btn.className.includes('pendentes') && tarefas[obj].concluida == false) {
+            tarefas_filtradas.push(tarefas[obj])
+        }
+        else if (btn.className.includes('concluidas') && tarefas[obj].concluida == true) {
+            tarefas_filtradas.push(tarefas[obj])
+        }
+        else if (btn.className.includes('todas')) {
+            mostrarNaTela(listaTarefas)
+            return
+        }
+    }
+    
+    mostrarNaTela(tarefas_filtradas)
+
+}
+
 
 btnAdd.addEventListener("click", adicionaTarefa);
+btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
+
