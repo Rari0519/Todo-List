@@ -231,21 +231,11 @@ function adicionar_pesquisar() {
             const nome = tarefas[obj].Nome.toLowerCase()
             const tamanho = valor_digitado.length 
             const palavra_filtrada = nome.substring(0, tamanho) 
+            console.log(palavra_filtrada, valor_digitado)
             if (palavra_filtrada == valor_digitado)   {
                 tarefas_pesquisadas.push(tarefas[obj])
-                construir_div(tarefas_pesquisadas)
             }
-            /*
-            for (let i = 0; i <= valor_digitado.length && i <= nome.length; i++) {
-                console.log(palavra_filtrada)
-                /*           
-                if (palavra_filtrada == valor_digitado) {
-                }  
-                
-            }
-            */
-            
-
+            construir_div(tarefas_pesquisadas)
         }
     })
 }
