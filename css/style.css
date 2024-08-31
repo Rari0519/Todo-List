@@ -13,7 +13,7 @@ body, html {
     width: 100%;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.192);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .todoList h1 {
     font-size: 2rem;
@@ -27,4 +27,7 @@ body, html {
 }
 .tarefas {
     margin-top: 20px;
+}
+.feito{
+    text-decoration: line-through;
 }
