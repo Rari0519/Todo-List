@@ -36,21 +36,22 @@ h3
     flex: 1
     font-size: 0.9rem
 
-button
+// estilização botões bootstrap
+.btn-outline-danger
     background-color: $background-color
     color: $font-color
+    width: 2.3rem
     font-size: 15px  
     padding: 3px 6px
     margin-right: 0.4rem
     cursor: pointer
     transition: .4s
     border: 2px solid $font-color
-
-button:hover
-    background-color: $font-color
-    color: $background-color
-    border: 2px solid $background-color
-    transition: .6s
+    &:hover
+        background-color: $font-color
+        color: $background-color
+        border: 2px solid $background-color
+        transition: .6s
 
 input, select
     padding: 0.25rem 0.5rem
@@ -60,7 +61,12 @@ input, select
 input
     width: 67%
 
-select  
-    cursor: pointer
+option 
+    font-size: 15px
+    padding: 5px
+    background-color: $font-color    
+    color: $background-color
+    transition: .6s
+    
 .hide
     display: none

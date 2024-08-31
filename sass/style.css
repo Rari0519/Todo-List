@@ -5,7 +5,7 @@
   margin: 100px auto 0;
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 9px 10px 50px black;
+  box-shadow: 9px 10px 25px black;
 }
 
 #todo-form, #todo-edit, #todo-toolbar {
@@ -59,6 +59,15 @@
   color: white;
 }
 
+.done {
+  background-color: #5B152D;
+}
+.done h3 {
+  color: white;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -96,9 +105,10 @@ h3 {
   font-size: 0.9rem;
 }
 
-button {
+.btn-outline-danger {
   background-color: #fff;
   color: #5B152D;
+  width: 2.3rem;
   font-size: 15px;
   padding: 3px 6px;
   margin-right: 0.4rem;
@@ -106,8 +116,7 @@ button {
   transition: 0.4s;
   border: 2px solid #5B152D;
 }
-
-button:hover {
+.btn-outline-danger:hover {
   background-color: #5B152D;
   color: #fff;
   border: 2px solid #fff;
@@ -124,8 +133,12 @@ input {
   width: 67%;
 }
 
-select {
-  cursor: pointer;
+option {
+  font-size: 15px;
+  padding: 5px;
+  background-color: #5B152D;
+  color: #fff;
+  transition: 0.6s;
 }
 
 .hide {
