@@ -1,9 +1,8 @@
 
-
 const input = document.querySelector('#tarefa-input');
 const select = document.querySelector('#form-priority');
 const btnAdd = document.querySelector('#btn-add');
-const tarefas = document.querySelector('.tarefas');
+const tarefas = document.querySelector('#todo-list');
 const btn_filtros = document.querySelectorAll('.filtro')
 
 let listaTarefas = [];
@@ -50,16 +49,22 @@ function mostrarNaTela(listaTarefas) {
     let li = "";
     listaTarefas.forEach((itemTarefa, posicao) => {
         li = li + `
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-         <div class="form-check">
-             <input class="form-check-input" type="checkbox" onchange="concluir(${posicao})">
-             <label class="form-check-label" id="label-${posicao}" for="input">${itemTarefa.tarefa}</label>
-         </div>
-         <div class="ms-auto p-1">
-             <button type="button" class="btn btn-primary btn-sm me-2" onclick="editar(${posicao})"><i class='bx bxs-pencil'></i></button>
-             <button type="button" class="btn btn-danger btn-sm" onclick="deletar(${posicao})"><i class='bx bx-x'></i></button>
-         </div>
-         </li>`;
+        
+            <div class="list done">
+                <h3>${itemTarefa.tarefa}</h3>
+                <div class="list-priority">
+                </div>
+                <!-- Botões check, edit e complete -->
+                <button type="button" class="btn btn-outline-danger">
+                    <i class="bi bi-check-lg"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger">
+                    <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>`;
     });
 
     tarefas.innerHTML = li;
@@ -142,4 +147,25 @@ function filtrar(lista) {
     })
 }
 
+function pesquisar(lista) {
+    const input = document.querySelector('#search-input')
+    input.addEventListener('input', () => {
+
+        const valor_digitado = input.value.toLowerCase()
+        const listaPesquisa = []
+
+        for (obj in lista) {
+            const nome = lista[obj].tarefa.toLowerCase()
+            const tamanho = valor_digitado.length 
+            const palavra_filtrada = nome.substring(0, tamanho) 
+            console.log(palavra_filtrada, valor_digitado)
+            if (palavra_filtrada == valor_digitado)   {
+                listaPesquisa.push(lista[obj])
+            }
+            mostrarNaTela(listaPesquisa)
+        }
+    })
+}
+
 filtrar(listaTeste)
+pesquisar(listaTeste)
