@@ -1,11 +1,13 @@
 
 
 const input = document.querySelector('#tarefa-input');
+const select = document.querySelector('#form-priority');
 const btnAdd = document.querySelector('#btn-add');
 const tarefas = document.querySelector('.tarefas');
 const btn_filtros = document.querySelectorAll('.filtro')
 
 let listaTarefas = [];
+
 
 function adicionaTarefa() {
     const tarefa = input.value.trim();
@@ -89,3 +91,55 @@ btnAdd.addEventListener("click", adicionaTarefa);
 btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
 
 
+// ========== MURILO =========== //
+
+// ARRAY DE TESTE PARA FILTRO E PESQUISA
+let listaTeste = [
+    { tarefa: 'Estudar matemática', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Revisar histórico', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Fazer exercícios de física', concluida: false, prioridade: 'Média' },
+    { tarefa: 'Ler um livro', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Escrever um relatório', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Organizar a sala de estudos', concluida: false, prioridade: 'Média' },
+    { tarefa: 'Comprar materiais de estudo', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Preparar apresentação', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Revisar anotações', concluida: true, prioridade: 'Média' },
+    { tarefa: 'Planejar a semana', concluida: false, prioridade: 'Baixa' }
+];
+
+mostrarNaTela(listaTeste)
+
+
+function filtrar(lista) {
+    const select = document.querySelector('#filter-select')
+    select.addEventListener('input', (e) => {
+
+        const listaFiltrada = []
+
+        if (select.value == 'all') {
+            mostrarNaTela(listaTeste)
+            return
+        }
+
+        else if (select.value == 'done') {
+            for (obj in lista) {
+                if (lista[obj].concluida == true) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
+        }
+
+        else if (select.value == 'todo') {
+            for (obj in lista) {
+                if (lista[obj].concluida == false) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
+        }
+
+        mostrarNaTela(listaFiltrada)
+ 
+    })
+}
+
+filtrar(listaTeste)
