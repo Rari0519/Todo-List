@@ -70,28 +70,6 @@ function mostrarNaTela(listaTarefas) {
     tarefas.innerHTML = li;
 }
 
-// utiliza o nome da classe e o atributo concluido para gerar um novo array com as tarefas filtradas
-function filtrarTarefas(btn, tarefas) {
-
-    const tarefas_filtradas = []
-
-   for (obj in tarefas) {
-        if (btn.className.includes('pendentes') && tarefas[obj].concluida == false) {
-            tarefas_filtradas.push(tarefas[obj])
-        }
-        else if (btn.className.includes('concluidas') && tarefas[obj].concluida == true) {
-            tarefas_filtradas.push(tarefas[obj])
-        }
-        else if (btn.className.includes('todas')) {
-            mostrarNaTela(listaTarefas)
-            return
-        }
-    }
-    
-    mostrarNaTela(tarefas_filtradas)
-
-}
-
 btnAdd.addEventListener("click", adicionaTarefa);
 btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
 
