@@ -14,24 +14,24 @@ let listaTarefas = []; // definindo array para armazenar as lista de tarefas
 
 // Funções
 function adicionaTarefa() {
-  const tarefa = input.value.trim();
-  if (tarefa !== "") {
-    listaTarefas.push({
-        tarefa: input.value,
-        concluida: false
-    })
-    mostrarNaTela(listaTarefas);
-  }else alert("Não é possivel adicionar um tarefa vazia.\nPor favor insira um tarefa válida!")
-  input.value = ""; /* limpando input após adicionar nova tarefa */ 
+    const tarefa = input.value.trim();
+    if (tarefa !== "") {
+        listaTarefas.push({
+            tarefa: input.value,
+            concluida: false
+        })
+        mostrarNaTela(listaTarefas);
+    } else alert("Não é possivel adicionar um tarefa vazia.\nPor favor insira um tarefa válida!")
+    input.value = ""; /* limpando input após adicionar nova tarefa */
 }
 
-function mostrarNaTela() {
-  let newLi = "";
+function mostrarNaTela(lista) {
+    let newLi = "";
 
-  listaTarefas.forEach((itemTarefa, posicao) => {
-    newLi =
-      newLi +
-      `
+    lista.forEach((itemTarefa, posicao) => {
+        newLi =
+            newLi +
+            `
             <li class="tarefas ${itemTarefa.concluida && "done"}">
                 <h3>${itemTarefa.tarefa}</h3>
                 <div class="list-priority"></div>
@@ -46,71 +46,103 @@ function mostrarNaTela() {
                 </button>
             <li/>
         `;
-  });
+    });
     ulTarefas.innerHTML = newLi;
-    
+
     localStorage.setItem('tasks', JSON.stringify(listaTarefas))
 }
 
 function deletar(posicao) {
     listaTarefas.splice(posicao, 1);
-    mostrarNaTela();
+    mostrarNaTela(listaTarefas);
 }
 
 function editar() {
     const novaTarefa = prompt("Edite a tarefa...");
     if (novaTarefa !== null && novaTarefa.trim() !== "") {
         listaTarefas[posicao].tarefa = novaTarefa.trim();
-        mostrarNaTela();
+        mostrarNaTela(listaTarefas);
     }
 }
 
 function concluir(posicao) {
     listaTarefas[posicao].concluida = !listaTarefas[posicao].concluida;
-    mostrarNaTela();
+    mostrarNaTela(listaTarefas);
 
 }
 
 function atualizarPage() {
     const taskStorage = localStorage.getItem('tasks');
 
-    if(taskStorage) {
-    listaTarefas = JSON.parse(taskStorage)
+    if (taskStorage) {
+        listaTarefas = JSON.parse(taskStorage)
     }
-    mostrarNaTela()
+    mostrarNaTela(listaTarefas)
 }
 
-// // utiliza o nome da classe e o atributo concluido para gerar um novo array com as tarefas filtradas
-function filtrarTarefas(btn, tarefas) {
+function filtrar(lista) {
+    const select = document.querySelector('#filter-select')
+    select.addEventListener('input', (e) => {
+        const listaFiltrada = []
 
-    const tarefas_filtradas = []
-
-    for (obj in tarefas) {
-        if (btn.className.includes('todo') && tarefas[obj].concluida == false) {
-            tarefas_filtradas.push(tarefas[obj])
-        }
-        else if (btn.className.includes('done') && tarefas[obj].concluida == true) {
-            tarefas_filtradas.push(tarefas[obj])
-        }
-        else if (btn.className.includes('all')) {
+        if (select.value == 'all') {
             mostrarNaTela(listaTarefas)
             return
         }
+
+        else if (select.value == 'done') {
+            for (obj in lista) {
+                if (lista[obj].concluida == true) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
         }
 
-    mostrarNaTela(tarefas_filtradas)
+        else if (select.value == 'todo') {
+            for (obj in lista) {
+                if (lista[obj].concluida == false) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
+        }
 
+        mostrarNaTela(listaFiltrada)
+
+    })
 }
 
+function pesquisar(lista) {
+    const input = document.querySelector('#search-input')
+    input.addEventListener('input', () => {
+
+        const valor_digitado = input.value.toLowerCase()
+        const listaPesquisa = []
+
+        for (obj in lista) {
+            const nome = lista[obj].tarefa.toLowerCase()
+            const tamanho = valor_digitado.length
+            const palavra_filtrada = nome.substring(0, tamanho)
+            console.log(palavra_filtrada, valor_digitado)
+            if (palavra_filtrada == valor_digitado) {
+                listaPesquisa.push(lista[obj])
+            }
+            mostrarNaTela(listaPesquisa)
+        }
+    })
+}
+
+atualizarPage()
 // ------------------------------------------------------------------------------
 
-atualizarPage() 
+//atualizarPage()
+
 // Eventos
 // Evento ao clicar em adicionar 
 btnAdd.addEventListener("click", adicionaTarefa);
+btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
 
-
-// btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
+filtrar(listaTarefas)
+pesquisar(listaTarefas)
 
 
 // ========== MURILO =========== //
@@ -132,57 +164,7 @@ btnAdd.addEventListener("click", adicionaTarefa);
 // mostrarNaTela(listaTeste)
 
 
-// function filtrar(lista) {
-//     const select = document.querySelector('#filter-select')
-//     select.addEventListener('input', (e) => {
 
-//         const listaFiltrada = []
-
-//         if (select.value == 'all') {
-//             mostrarNaTela(listaTeste)
-//             return
-//         }
-
-//         else if (select.value == 'done') {
-//             for (obj in lista) {
-//                 if (lista[obj].concluida == true) {
-//                     listaFiltrada.push(lista[obj])
-//                 }
-//             }
-//         }
-
-//         else if (select.value == 'todo') {
-//             for (obj in lista) {
-//                 if (lista[obj].concluida == false) {
-//                     listaFiltrada.push(lista[obj])
-//                 }
-//             }
-//         }
-
-//         mostrarNaTela(listaFiltrada)
- 
-//     })
-// }
-
-// function pesquisar(lista) {
-//     const input = document.querySelector('#search-input')
-//     input.addEventListener('input', () => {
-
-//         const valor_digitado = input.value.toLowerCase()
-//         const listaPesquisa = []
-
-//         for (obj in lista) {
-//             const nome = lista[obj].tarefa.toLowerCase()
-//             const tamanho = valor_digitado.length 
-//             const palavra_filtrada = nome.substring(0, tamanho) 
-//             console.log(palavra_filtrada, valor_digitado)
-//             if (palavra_filtrada == valor_digitado)   {
-//                 listaPesquisa.push(lista[obj])
-//             }
-//             mostrarNaTela(listaPesquisa)
-//         }
-//     })
-// }
 
 // filtrar(listaTeste)
 // pesquisar(listaTeste)
