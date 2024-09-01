@@ -52,11 +52,15 @@
 }
 
 .list-priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
   border: 1px solid #5B152D;
-  width: 4rem;
-  height: 1rem;
+  width: 3.5rem;
+  height: 2rem;
   margin: 0.3rem;
-  color: white;
+  color: #5B152D;
 }
 
 .done {
@@ -149,3 +153,22 @@ option {
 .hide {
   display: none;
 }/*# sourceMappingURL=style.css.map */
+
+/* cor da prioridade conforme o valor escolhido */
+.prioridade-alta {
+  background-color: rgba(255, 0, 0, 0.214);
+  color: red;
+  font-weight: bold;
+}
+
+.prioridade-media {
+  background-color: rgba(255, 166, 0, 0.152);
+  color: orange;
+  font-weight: bold;
+}
+
+.prioridade-baixa {
+  background-color: rgba(0, 128, 0, 0.242);
+  color: green;
+  font-weight: bold;
+}

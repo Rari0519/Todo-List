@@ -6,6 +6,7 @@ const btnAdd = document.querySelector("#btn-add"); /* Botão add */
 const ulTarefas = document.querySelector(".list-task"); /* Lista tarefas- */
 const btn_filtros = document.querySelectorAll(".filtro");
 const edit = document.querySelector("#edit")
+const select = document.querySelector('#form-priority')
 
 // ------------------------------------------------------------------------------
 
@@ -15,30 +16,41 @@ let listaTarefas = []; // definindo array para armazenar as lista de tarefas
 // Funções
 function adicionaTarefa() {
     const tarefa = input.value.trim();
+    const prioridade = select.value;
+    console.log(prioridade)
     if (tarefa !== "") {
         listaTarefas.push({
-            tarefa: input.value,
+            tarefa: tarefa,
+            prioridade: prioridade,
             concluida: false
         })
         mostrarNaTela(listaTarefas);
     } else alert("Não é possivel adicionar um tarefa vazia.\nPor favor insira um tarefa válida!")
     input.value = ""; /* limpando input após adicionar nova tarefa */
+    select.value = 'Baixa'
 }
 
 function mostrarNaTela(lista) {
     let newLi = "";
 
     lista.forEach((itemTarefa, posicao) => {
-        newLi =
-            newLi +
+        let classePrioridade = '';
+        if (itemTarefa.prioridade === 'Alta') {
+            classePrioridade = 'prioridade-alta';
+        } else if (itemTarefa.prioridade === 'Media') {
+            classePrioridade = 'prioridade-media';
+        } else if (itemTarefa.prioridade === 'Baixa') {
+            classePrioridade = 'prioridade-baixa';
+        }
+        newLi = newLi +
             `
             <li class="tarefas ${itemTarefa.concluida && "done"}">
                 <h3>${itemTarefa.tarefa}</h3>
-                <div class="list-priority"></div>
+                <div class="list-priority ${classePrioridade}">${itemTarefa.prioridade}</div>
                 <button type="button" class="btn btn-outline-danger" onclick="concluir(${posicao})">
                     <i class="bi bi-check-lg"></i>
                 </button>
-                <button type="button" class="btn btn-outline-danger" id="edit">
+                <button type="button" class="btn btn-outline-danger" onclick="editar(${posicao})">
                     <i class="bi bi-pencil-fill"></i>
                 </button>
                 <button type="button" class="btn btn-outline-danger" onclick="deletar(${posicao})">
@@ -57,7 +69,7 @@ function deletar(posicao) {
     mostrarNaTela(listaTarefas);
 }
 
-function editar() {
+function editar(posicao) {
     const novaTarefa = prompt("Edite a tarefa...");
     if (novaTarefa !== null && novaTarefa.trim() !== "") {
         listaTarefas[posicao].tarefa = novaTarefa.trim();
