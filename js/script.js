@@ -98,3 +98,76 @@ function mostrarNaTela() {
 // Eventos
 btnAdd.addEventListener("click", adicionaTarefa);
 // btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
+// ========== MURILO =========== //
+
+// ARRAY DE TESTE PARA FILTRO E PESQUISA
+let listaTeste = [
+    { tarefa: 'Estudar matemática', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Revisar histórico', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Fazer exercícios de física', concluida: false, prioridade: 'Média' },
+    { tarefa: 'Ler um livro', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Escrever um relatório', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Organizar a sala de estudos', concluida: false, prioridade: 'Média' },
+    { tarefa: 'Comprar materiais de estudo', concluida: false, prioridade: 'Baixa' },
+    { tarefa: 'Preparar apresentação', concluida: false, prioridade: 'Alta' },
+    { tarefa: 'Revisar anotações', concluida: true, prioridade: 'Média' },
+    { tarefa: 'Planejar a semana', concluida: false, prioridade: 'Baixa' }
+];
+
+mostrarNaTela(listaTeste)
+
+
+function filtrar(lista) {
+    const select = document.querySelector('#filter-select')
+    select.addEventListener('input', (e) => {
+
+        const listaFiltrada = []
+
+        if (select.value == 'all') {
+            mostrarNaTela(listaTeste)
+            return
+        }
+
+        else if (select.value == 'done') {
+            for (obj in lista) {
+                if (lista[obj].concluida == true) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
+        }
+
+        else if (select.value == 'todo') {
+            for (obj in lista) {
+                if (lista[obj].concluida == false) {
+                    listaFiltrada.push(lista[obj])
+                }
+            }
+        }
+
+        mostrarNaTela(listaFiltrada)
+ 
+    })
+}
+
+function pesquisar(lista) {
+    const input = document.querySelector('#search-input')
+    input.addEventListener('input', () => {
+
+        const valor_digitado = input.value.toLowerCase()
+        const listaPesquisa = []
+
+        for (obj in lista) {
+            const nome = lista[obj].tarefa.toLowerCase()
+            const tamanho = valor_digitado.length 
+            const palavra_filtrada = nome.substring(0, tamanho) 
+            console.log(palavra_filtrada, valor_digitado)
+            if (palavra_filtrada == valor_digitado)   {
+                listaPesquisa.push(lista[obj])
+            }
+            mostrarNaTela(listaPesquisa)
+        }
+    })
+}
+
+filtrar(listaTeste)
+pesquisar(listaTeste)
