@@ -1,23 +1,21 @@
 // ========== MURILO - RAYANE - RARIANE =========== //
 
 // Selecionando elementos
-const input = document.querySelector("#tarefa-input"); /* input */
-const btnAdd = document.querySelector("#btn-add"); /* Botão add */
-const ulTarefas = document.querySelector(".list-task"); /* Lista tarefas- */
+const input = document.querySelector("#tarefa-input"); 
+const btnAdd = document.querySelector("#btn-add"); 
+const ulTarefas = document.querySelector(".list-task"); 
 const btn_filtros = document.querySelectorAll(".filtro");
 const edit = document.querySelector("#edit")
 const select = document.querySelector('#form-priority')
 
-// ------------------------------------------------------------------------------
 
 
-let listaTarefas = []; // definindo array para armazenar as lista de tarefas
+let listaTarefas = []; 
 
 // Funções
 function adicionaTarefa() {
-    const tarefa = input.value.trim();
-    const prioridade = select.value;
-    console.log(prioridade)
+    let tarefa = input.value.trim();
+    let prioridade = select.value;
     if (tarefa !== "") {
         listaTarefas.push({
             tarefa: tarefa,
@@ -26,7 +24,7 @@ function adicionaTarefa() {
         })
         mostrarNaTela(listaTarefas);
     } else alert("Não é possivel adicionar um tarefa vazia.\nPor favor insira um tarefa válida!")
-    input.value = ""; /* limpando input após adicionar nova tarefa */
+    input.value = ""; 
     select.value = 'Baixa'
 }
 
@@ -70,7 +68,7 @@ function deletar(posicao) {
 }
 
 function editar(posicao) {
-    const novaTarefa = prompt("Edite a tarefa...");
+    let novaTarefa = prompt("Edite a tarefa...");
     if (novaTarefa !== null && novaTarefa.trim() !== "") {
         listaTarefas[posicao].tarefa = novaTarefa.trim();
         mostrarNaTela(listaTarefas);
@@ -80,7 +78,6 @@ function editar(posicao) {
 function concluir(posicao) {
     listaTarefas[posicao].concluida = !listaTarefas[posicao].concluida;
     mostrarNaTela(listaTarefas);
-
 }
 
 function atualizarPage() {
@@ -143,40 +140,17 @@ function pesquisar(lista) {
     })
 }
 
-atualizarPage()
-// ------------------------------------------------------------------------------
-
-//atualizarPage()
 
 // Eventos
-// Evento ao clicar em adicionar 
 btnAdd.addEventListener("click", adicionaTarefa);
+document.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') { 
+        adicionaTarefa();          
+    }
+});
 btn_filtros.forEach((btn) => btn.addEventListener("click", () => { filtrarTarefas(btn, listaTarefas) }));
 
 filtrar(listaTarefas)
 pesquisar(listaTarefas)
+atualizarPage()
 
-
-// ========== MURILO =========== //
-
-// ARRAY DE TESTE PARA FILTRO E PESQUISA
-// let listaTeste = [
-//     { tarefa: 'Estudar matemática', concluida: false, prioridade: 'Baixa' },
-//     { tarefa: 'Revisar histórico', concluida: false, prioridade: 'Alta' },
-//     { tarefa: 'Fazer exercícios de física', concluida: false, prioridade: 'Média' },
-//     { tarefa: 'Ler um livro', concluida: false, prioridade: 'Baixa' },
-//     { tarefa: 'Escrever um relatório', concluida: false, prioridade: 'Alta' },
-//     { tarefa: 'Organizar a sala de estudos', concluida: false, prioridade: 'Média' },
-//     { tarefa: 'Comprar materiais de estudo', concluida: false, prioridade: 'Baixa' },
-//     { tarefa: 'Preparar apresentação', concluida: false, prioridade: 'Alta' },
-//     { tarefa: 'Revisar anotações', concluida: true, prioridade: 'Média' },
-//     { tarefa: 'Planejar a semana', concluida: false, prioridade: 'Baixa' }
-// ];
-
-// mostrarNaTela(listaTeste)
-
-
-
-
-// filtrar(listaTeste)
-// pesquisar(listaTeste)
